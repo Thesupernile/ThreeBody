@@ -1,4 +1,4 @@
-#include "GLFW/glfw3.h"
+#include "main.h"
 
 int main(void)
 {
@@ -9,27 +9,30 @@ int main(void)
         return -1;
 
     /* Create a windowed mode window and its OpenGL context */
-    window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
+    window = glfwCreateWindow(640, 480, "Three Body", NULL, NULL);
+    glfwMakeContextCurrent(window);
     if (!window)
     {
         glfwTerminate();
         return -1;
     }
 
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)){
+        glfwTerminate();
+        return -1;
+    }
+
     /* Make the window's context current */
-    glfwMakeContextCurrent(window);
+    glClearColor(0.3f, 0.3f, 0.3f, 1.0f); // Clear to a dark grey background
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
     {
-        /* Render here */
+        glfwPollEvents();
+
         glClear(GL_COLOR_BUFFER_BIT);
 
-        /* Swap front and back buffers */
         glfwSwapBuffers(window);
-
-        /* Poll for and process events */
-        glfwPollEvents();
     }
 
     glfwTerminate();

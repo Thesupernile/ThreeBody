@@ -13,4 +13,4 @@ add_executable(ThreeBodySim
 
 target_include_directories(ThreeBodySim PRIVATE include)
 
-target_link_libraries(ThreeBodySim glfw3 OpenGL::GL)
+target_link_libraries(ThreeBodySim ${GLFW3_LIBRARY} OpenGL::GL)
