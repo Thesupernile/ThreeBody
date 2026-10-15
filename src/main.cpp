@@ -1,4 +1,6 @@
 #include "main.h"
+#include "UI/uiHandler.hpp"
+#include "sim/simulation.hpp"
 
 int main(void)
 {
