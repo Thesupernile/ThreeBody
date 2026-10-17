@@ -1,3 +1,7 @@
 #pragma once
 #include "drawable.hpp"
-#include "trajectory.hpp"
+#include "trail.hpp"
+
+class Body : public Drawable{
+    
+};
