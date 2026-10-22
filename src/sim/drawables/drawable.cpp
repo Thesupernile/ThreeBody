@@ -1,10 +1,11 @@
 #include "drawable.hpp"
 #include <cmath>
+#include <vector>
 
 Drawable::Drawable(){
     generateCircleVertexBuffer(NUM_VERTICES);
     generateCircleIndexBuffer(NUM_VERTICES);
-    createIndexArrays();
+    createVertexArrays();
 }
 
 Drawable::~Drawable(){
@@ -54,7 +55,18 @@ void Drawable::generateCircleIndexBuffer(int numVertices){
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, &indexData, GL_STATIC_DRAW);
 }
 
-void createVertexArrays(){
+void Drawable::createVertexArrays(){
+    vertexLayout.Push<float>(2);
+    glBindBuffer(GL_ARRAY_BUFFER, vertexArrayID);
+
+    const auto& elements = vertexLayout.GetElements();
+    unsigned int offset = 0;
+    for(unsigned int i = 0; i < elements.size(); i++){
+        const auto& element = elements[i];
+        glEnableVertexAttribArray(i);
+        glVertexAttribPointer(i, element.count, element.type, element.normalised, vertexLayout.GetStride(), (const void*)offset);
+        offset = element.count * LayoutElement::GetSizeOfType(element.type);
+    }
 
 }
 

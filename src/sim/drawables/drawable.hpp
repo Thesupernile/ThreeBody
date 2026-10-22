@@ -2,6 +2,8 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <glm/vec3.hpp>
+
+#include "vertexLayout.hpp"
 #include "utils.h"
 
 class Drawable{
@@ -9,7 +11,9 @@ class Drawable{
     // Variables for vertex buffers etc
     unsigned int vertexBufferID;
     unsigned int indexBufferID;
-    unsigned int indexArrayID;
+    unsigned int vertexArrayID;
+    Layout vertexLayout;
+    
     static const unsigned int NUM_VERTICES = 64;
 
     float vertexData[NUM_VERTICES * 2];
@@ -25,7 +29,7 @@ class Drawable{
 
     void generateCircleVertexBuffer(int numVertices);
     void generateCircleIndexBuffer(int numVertices);
-    void createIndexArrays();
+    void createVertexArrays();
 
     void Draw();
 };
